@@ -1,6 +1,6 @@
 let sound1, sound2, sound3, sound4, sound5, sound6, sound7, sound8;
-let original1, original2;
-let questionButton, original1Button, original2Button, answerButton, nextButton;
+let original1;
+let questionButton, original1Button, answerButton, nextButton;
 let player, fileName;
 let answerRevealed = false;
 
@@ -24,18 +24,18 @@ function setup(){
   fill(255);
 
   // Title
-  textSize(48);
+  textSize(36);
   text("Tempo ID Practice", width/2, height/9);
 
   // Subtitle
-  textSize(28);
+  textSize(20);
   text("BPM = 108, 112, 120, 128, 136, 144", width/2, height/9 + 40);
 
   // --- Layout variables ---
   let rowH = 60;
   let col1X = width/4;
   let col2X = width/2;
-  let startY = height/3;  // start layout lower down
+  let startY = height/3;
 
   // QUESTION row
   createDiv("QUESTION")
@@ -58,10 +58,10 @@ function setup(){
     .position(col1X - 150, startY + rowH*2)
     .style("color","white").style("font-size","24px");
   answerButton = createButton("REVEAL");
-  styleButton(answerButton, col2X, startY + rowH*3, "#03A9F4");
+  styleButton(answerButton, col2X, startY + rowH*2, "#03A9F4");
   answerButton.mousePressed(showAnswer);
 
-  // NEXT QUESTION button (full row)
+  // NEXT QUESTION button
   nextButton = createButton("NEXT QUESTION");
   nextButton.position(width/2 - 100, startY + rowH*3 + 20);
   nextButton.size(200, rowH);
@@ -69,7 +69,7 @@ function setup(){
   nextButton.style("background-color","#FFC107");
   nextButton.mousePressed(nextQuestion);
 
-  // pick first sound
+  // Pick first sound
   chooseSound();
 }
 
@@ -115,10 +115,8 @@ function resetButton(btn, label, color) {
 function stopAll(){
   if (player) player.stop();
   if (original1) original1.stop();
-  if (original2) original2.stop();
   resetButton(questionButton, "PLAY", "#00E938");
   resetButton(original1Button, "PLAY", "#00E938");
-  resetButton(original2Button, "PLAY", "#00E938");
 }
 
 function showAnswer() {
