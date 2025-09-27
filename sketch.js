@@ -29,7 +29,7 @@ function setup(){
 
   // Subtitle
   textSize(20);
-  text("BPM = 108, 112, 120, 128, 136, 144", width/2, height/9 + 40);
+  text("BPM = 104, 112, 120, 128, 136, 144, 152", width/2, height/9 + 40);
 
   // --- Layout variables ---
   let rowH = 60;
