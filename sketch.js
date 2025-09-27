@@ -6,17 +6,15 @@ let answerRevealed = false;
 
 function preload() {
   // Question pool
-  sound1 = loadSound('assets/Eno_DigitalClip_6dB.mp3');
-  sound2 = loadSound('assets/Eno_DigitalClip_12dB.mp3');
-  sound3 = loadSound('assets/Eno_DigitalClip_18dB.mp3');
-  sound4 = loadSound('assets/Eno_DigitalClip_24dB.mp3');
-  sound5 = loadSound('assets/Hoff_DigitalClip_6dB.mp3');
-  sound6 = loadSound('assets/Hoff_DigitalClip_12dB.mp3');
-  sound7 = loadSound('assets/Hoff_DigitalClip_18dB.mp3');
-  sound8 = loadSound('assets/Hoff_DigitalClip_24dB.mp3');
+  sound1 = loadSound('assets/104.mp3');
+  sound2 = loadSound('assets/112.mp3');
+  sound3 = loadSound('assets/120.mp3');
+  sound4 = loadSound('assets/128.mp3');
+  sound5 = loadSound('assets/136.mp3');
+  sound6 = loadSound('assets/144.mp3');
+  sound7 = loadSound('assets/152.mp3');
   // Originals
-  original1 = loadSound('assets/EnoOriginal.mp3');
-  original2 = loadSound('assets/HoffOriginal.mp3');
+  original1 = loadSound('assets/120-click.mp3');
 }
 
 function setup(){  
@@ -27,11 +25,11 @@ function setup(){
 
   // Title
   textSize(48);
-  text("Digital Clipping Practice", width/2, height/9);
+  text("Tempo ID Practice", width/2, height/9);
 
   // Subtitle
   textSize(28);
-  text("+6dB, +12dB, +18dB, +24dB", width/2, height/9 + 40);
+  text("BPM = 108, 112, 120, 128, 136, 144", width/2, height/9 + 40);
 
   // --- Layout variables ---
   let rowH = 60;
@@ -48,24 +46,16 @@ function setup(){
   questionButton.mousePressed(toggleQuestion);
 
   // ORIGINAL 1 row
-  createDiv("ORIGINAL 1")
+  createDiv("BPM = 120")
     .position(col1X - 150, startY + rowH)
     .style("color","white").style("font-size","24px");
   original1Button = createButton("PLAY");
   styleButton(original1Button, col2X, startY + rowH, "#00E938");
   original1Button.mousePressed(toggleOriginal1);
 
-  // ORIGINAL 2 row
-  createDiv("ORIGINAL 2")
-    .position(col1X - 150, startY + rowH*2)
-    .style("color","white").style("font-size","24px");
-  original2Button = createButton("PLAY");
-  styleButton(original2Button, col2X, startY + rowH*2, "#00E938");
-  original2Button.mousePressed(toggleOriginal2);
-
   // ANSWER row
   createDiv("ANSWER")
-    .position(col1X - 150, startY + rowH*3)
+    .position(col1X - 150, startY + rowH*2)
     .style("color","white").style("font-size","24px");
   answerButton = createButton("REVEAL");
   styleButton(answerButton, col2X, startY + rowH*3, "#03A9F4");
@@ -73,7 +63,7 @@ function setup(){
 
   // NEXT QUESTION button (full row)
   nextButton = createButton("NEXT QUESTION");
-  nextButton.position(width/2 - 100, startY + rowH*4 + 20);
+  nextButton.position(width/2 - 100, startY + rowH*3 + 20);
   nextButton.size(200, rowH);
   nextButton.style("font-size","20px");
   nextButton.style("background-color","#FFC107");
@@ -117,18 +107,6 @@ function toggleOriginal1() {
   }
 }
 
-function toggleOriginal2() {
-  if (original2.isPlaying()) {
-    original2.stop();
-    resetButton(original2Button, "PLAY", "#00E938");
-  } else {
-    stopAll();
-    original2.amp(0.8);
-    original2.loop();
-    original2Button.html("STOP").style("background-color","#F80F05");
-  }
-}
-
 function resetButton(btn, label, color) {
   btn.html(label);
   btn.style("background-color", color);
@@ -162,18 +140,17 @@ let secondLastChoice = -1;
 function chooseSound() {
   let choice;
   do {
-    choice = int(random(8));
+    choice = int(random(7));
   } while (choice === lastChoice && choice === secondLastChoice);
 
   secondLastChoice = lastChoice;
   lastChoice = choice;
 
-  if (choice === 0) { player = sound1; fileName = "+6dB"; }
-  else if (choice === 1) { player = sound2; fileName = "+12dB"; }
-  else if (choice === 2) { player = sound3; fileName = "+18dB"; }
-  else if (choice === 3) { player = sound4; fileName = "+24dB"; }
-  else if (choice === 4) { player = sound5; fileName = "+6dB"; }
-  else if (choice === 5) { player = sound6; fileName = "+12dB"; }
-  else if (choice === 6) { player = sound7; fileName = "+18dB"; }
-  else { player = sound8; fileName = "+24dB"; }
+  if (choice === 0) { player = sound1; fileName = "BPM = 104"; }
+  else if (choice === 1) { player = sound2; fileName = "BPM = 112"; }
+  else if (choice === 2) { player = sound3; fileName = "BPM = 120"; }
+  else if (choice === 3) { player = sound4; fileName = "BPM = 128"; }
+  else if (choice === 4) { player = sound5; fileName = "BPM = 136"; }
+  else if (choice === 5) { player = sound6; fileName = "BPM = 144"; }
+  else { player = sound7; fileName = "BPM = 152"; }
 }
